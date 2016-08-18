@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<!--
+Note: You'll need the bootstrap css and js files and change the paths to them below.
+-->
+
+<html lang="en">
+<head>
+  <title>KeystoneJS API Example</title>
+
+  <link href="css/bootstrap.min.css" media="all" rel="stylesheet" />
+</head>
+<body>
+
+
+  <section>
+    <div class='container'>
+      <div class="row well well-lg">
+        <div class="col-md-12">
+          <img id="image1" src="" alt="" width="600px" />
+          <br><br>
+          <img id="image2" src="" alt="" width="600px" />
+          <br><br>
+          <img id="image3" src="" alt="" width="600px" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js?body=1"></script>
+
+  <script type="text/javascript">
+    //Global Variables
+    var serverIP = '<your ip address>';
+    var serverIP = '192.241.215.68';
+    
+    //First function that is called when the document finishes loading.
+    $(document).ready( function() {
+    
+      //Get user session information
+      $.get('/keystone/api/session', '', function(data) {
+        //debugger;
+        console.log('After $.get(/keystone/api/session), server returned...');
+        console.log(data);
+      }).fail( function() {
+        console.error('$.get(/keystone/api/session failed.)') ;
+      });
+      
+      //This call intentially creates an error
+      $.get('/keystone/api/test', '', function(data) {debugger});
+      
+      $.get('/keystone/api/users', '', function(data) {
+        //debugger;
+        console.log('After $.get(/keystone/api/users), server returned...');
+        console.log(data);
+      }).fail( function() {
+        console.error('$.get(/keystone/api/users failed.)') ;
+      });
+      
+      $.get('/keystone/api/users', '', function(data) {debugger});
+      
+      
+    });
+    
+  </script>
+  
+</body>
+</html>
+ 
