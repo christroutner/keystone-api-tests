@@ -1,3 +1,6 @@
-# Scratch
+# Keystone-API-Tests
 
-This is just a scratch pad. At the moment I'm using it to test the new Keystone API.
+This repository contains a suite of test to run against the new KeystoneJS Admin API. 
+
+## Installation
+Clone this repository in the `/public` directory of a working KeystoneJS installation. Accessing /tests.html will execute the tests. To view detailed results, open the JavaScript console in the browser.
