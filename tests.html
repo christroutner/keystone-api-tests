@@ -35,34 +35,60 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
     var serverIP = '<your ip address>';
     var serverIP = '192.241.198.211';
     
+    var isLoggedIn = false;
+    
     //First function that is called when the document finishes loading.
     $(document).ready( function() {
     
-      //Get user session information
+      //Get user session information. Determine if user is logged in or not.
       $.get('/keystone/api/session', '', function(data) {
         //debugger;
+        
+        console.log('Test 1: /api/session')
         console.log('After $.get(/keystone/api/session), server returned...');
         console.log(data);
+        
+        isLoggedIn = $.isEmptyObject(data);
+        
+        if(isLoggedIn) {
+          console.log('You are logged into KeystoneJS.');
+          
+          runLoggedInTests();
+        } else {
+          console.log('You are NOT logged in.');
+        }
+        
       }).fail( function() {
         console.error('$.get(/keystone/api/session failed.)') ;
       });
       
-      //This call intentially creates an error
-      $.get('/keystone/api/test', '', function(data) {debugger});
-      
-      $.get('/keystone/api/users', '', function(data) {
-        //debugger;
-        console.log('After $.get(/keystone/api/users), server returned...');
-        console.log(data);
-      }).fail( function() {
-        console.error('$.get(/keystone/api/users failed.)') ;
-      });
-      
-      $.get('/keystone/api/users', '', function(data) {debugger});
       
       
     });
     
+    //These 
+    function runLoggedInTests() {
+      
+      //For now, I'm just going to write tests if the user is logged in. Most API calls return a sign-in page if the user is not logged in.
+      //This call intentially creates an error
+      if(isLoggedIn) {
+        debugger;
+        
+        $.get('/keystone/api/test', '', function(data) {debugger});
+
+        $.get('/keystone/api/users', '', function(data) {
+          //debugger;
+          console.log('After $.get(/keystone/api/users), server returned...');
+          console.log(data);
+        }).fail( function() {
+          console.error('$.get(/keystone/api/users failed.)') ;
+        });
+
+        $.get('/keystone/api/users', '', function(data) {debugger});
+
+      }
+      
+    }
   </script>
   
 </body>
