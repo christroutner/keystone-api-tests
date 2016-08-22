@@ -74,18 +74,18 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
       
     });
     
-    //These 
+    //These tests are run when the user is logged in.
     function runLoggedInTests() {
       
       //For now, I'm just going to write tests if the user is logged in. Most API calls return a sign-in page if the user is not logged in.
       //This call intentially creates an error
       if(isLoggedIn) {
-        debugger;
+        //debugger;
         
         //Get a list that doesn't exist.
         $.get('/keystone/api/test', '', function(data) {debugger})
           .fail(function( jqxhr, textStatus, error ) {
-            debugger;
+            //debugger;
             
             if(jqxhr.status == 500)
               console.log('Test '+testCnt+': /api/test PASSED');
@@ -94,7 +94,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
             testCnt++;
             
             console.log('Expected: 500 (server error)');
-            console.log('Server returned: '+jqxhr.status+'('+error+')');
+            console.log('Server returned: '+jqxhr.status+' ('+error+')');
             
             console.log('');
           
@@ -103,18 +103,19 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
 
         //Get /api/users
         $.get('/keystone/api/users', '', function(data) {
-          debugger
+          //debugger
           
-          console.log('Test '+testCnt+': get(/api/usrs) PASSED');
+          console.log('Test '+testCnt+': get(/api/users) PASSED');
           console.log('First user found is '+data.results[0].name+' with ID '+data.results[0].id);
           console.log('');
           testCnt++;
           
+          testListItemUpdate(data.result[0]);
         })
         .fail(function( jqxhr, textStatus, error ) {
-          debugger;
+          //debugger;
           
-          console.log('Test '+testCnt+': get(/api/usrs) FAILED');
+          console.log('Test '+testCnt+': get(/api/users) FAILED');
           console.log('Server returned: '+jqxhr.status+'('+error+')');
           console.log('');
           testCnt++;
@@ -122,7 +123,41 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
         
 
       }
+    }
+    
+    //This test expects to be passed a User list item object. It tests the ability
+    //to update a list item by changing the name of the user.
+    function testListItemUpdate(userItem) {
+      debugger;
       
+      var originalUserName = userItem.name;
+      
+      //Error handling
+      if(originalUserName == undefined) {
+        console.log('Invalid user data passed to testListItemUpdate()');
+        return;
+      }
+      
+      userItem.name = "Test Name";
+      
+      //Update the user name.
+      $.post('/keystone/api/users/update', userItem, function(data) {
+        debugger;
+        
+        console.log('Test '+testCnt+': post(/api/users/update) PASSED');
+        console.log('Original user name was '+originalUserName+'. Name updated to: Test Name');
+        console.log('');
+        testCnt++;
+        
+      //Catch failures
+      }).fail(function( jqxhr, textStatus, error ) {
+        debugger;
+        
+        console.log('Test '+testCnt+': get(/api/users) FAILED');
+        console.log('Server returned: '+jqxhr.status+'('+error+')');
+        console.log('');
+        testCnt++;
+      });
     }
   </script>
   
