@@ -48,7 +48,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
         console.log('After $.get(/keystone/api/session), server returned...');
         console.log(data);
         
-        isLoggedIn = $.isEmptyObject(data);
+        isLoggedIn = !$.isEmptyObject(data);
         
         if(isLoggedIn) {
           console.log('You are logged into KeystoneJS.');
