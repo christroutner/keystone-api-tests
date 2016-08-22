@@ -140,7 +140,9 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
       
       userItem.name = "Test Name";
       
-      //Update the user name.
+      //NOTE: Not sure what the right 'update' path is, so trying multiple.
+      
+      //Update the user name. TRY 1
       $.post('/keystone/api/users/update', userItem, function(data) {
         debugger;
         
@@ -153,11 +155,31 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
       }).fail(function( jqxhr, textStatus, error ) {
         debugger;
         
-        console.log('Test '+testCnt+': get(/api/users) FAILED');
+        console.log('Test '+testCnt+': post(/api/users/update) FAILED');
         console.log('Server returned: '+jqxhr.status+'('+error+')');
         console.log('');
         testCnt++;
       });
+      
+       //Update the user name. TRY 2
+      $.post('/keystone/api/users/'+userItem._id+'/update', userItem, function(data) {
+        debugger;
+        
+        console.log('Test '+testCnt+': post(/api/users/'+userItem._id+'/update) PASSED');
+        console.log('Original user name was '+originalUserName+'. Name updated to: Test Name');
+        console.log('');
+        testCnt++;
+        
+      //Catch failures
+      }).fail(function( jqxhr, textStatus, error ) {
+        debugger;
+        
+        console.log('Test '+testCnt+': post(/api/users/'+userItem._id+'/update) FAILED');
+        console.log('Server returned: '+jqxhr.status+'('+error+')');
+        console.log('');
+        testCnt++;
+      });
+      
     }
   </script>
   
