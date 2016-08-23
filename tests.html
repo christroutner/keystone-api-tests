@@ -143,7 +143,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
       //NOTE: Not sure what the right 'update' path is, so trying multiple.
       
       //Update the user name. TRY 1
-      $.post('/keystone/api/users/update', userItem, function(data) {
+      $.post('/keystone/api/users/'+userItem.id, userItem, function(data) {
         //debugger;
         
         console.log('Test '+testCnt+': post(/api/users/update) PASSED');
@@ -160,7 +160,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
         console.log('');
         testCnt++;
       });
-      
+/*      
        //Update the user name. TRY 2
       $.post('/keystone/api/users/'+userItem.id+'/update', userItem, function(data) {
         //debugger;
@@ -179,7 +179,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
         console.log('');
         testCnt++;
       });
-      
+*/      
     }
   </script>
   
