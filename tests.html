@@ -78,6 +78,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
           runLoggedInTests();
         } else {
           appendOutput('You are NOT logged in.');
+          appendOutput("Server returned an empty object. This is expected, but out of spec. <a href='https://github.com/keystonejs/keystone/issues/3421'>See this GitHub issue.</a>", "color: yellow;");
           appendOutput('');
           console.log('You are NOT logged in.');
           console.log('');
