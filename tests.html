@@ -60,8 +60,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
       $.get('/keystone/api/session', '', function(data) {
         //debugger;
         
-        appendOutput("Test $.get(/keystone/api/session) - PASSED")
-        //console.log('Test 1: /api/session PASSED');
+        appendOutput("Test $.get(/keystone/api/session) - PASSED", "color: green;")
         testCnt++;
         console.log('After $.get(/keystone/api/session), server returned...');
         console.log(data);
@@ -70,6 +69,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
         isLoggedIn = !$.isEmptyObject(data);
         
         if(isLoggedIn) {
+          appendOutput('You are logged into KeystoneJS.');
           console.log('You are logged into KeystoneJS.');
           console.log('');
           
@@ -77,12 +77,16 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
           //This call intentially creates an error
           runLoggedInTests();
         } else {
+          appendOutput('You are NOT logged in.');
+          appendOutput('');
           console.log('You are NOT logged in.');
           console.log('');
+          
+          //Dev Note: This would be a good place to run Negative tests. E.g. test the expected output of API calls when user is not logged in.
         }
         
       }).fail( function() {
-        appendOutput("Test $.get(/keystone/api/session) - Server did not resond!")
+        appendOutput("Test $.get(/keystone/api/session) - Server did not resond!", "color: red;")
         console.error('$.get(/keystone/api/session failed.)') ;
       });
       
@@ -104,13 +108,13 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
             //debugger;
             
             if(jqxhr.status == 500)
-              console.log('Test '+testCnt+': /api/test PASSED');
+              appendOutput('Test '+testCnt+': /api/test PASSED', "color: green;");
             else
-              console.log('Test '+testCnt+': /api/test FAILED');
+              appendOutput('Test '+testCnt+': /api/test FAILED', "color: red;");
             testCnt++;
             
-            console.log('Expected: 500 (server error)');
-            console.log('Server returned: '+jqxhr.status+' ('+error+')');
+            appendOutput('Expected: 500 (server error)');
+            appendOutput('Server returned: '+jqxhr.status+' ('+error+')');
             
             console.log('');
           
