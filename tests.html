@@ -17,11 +17,25 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
     <div class='container'>
       <div class="row well well-lg">
         <div class="col-md-12">
+          <!--
           <img id="image1" src="" alt="" width="600px" />
           <br><br>
           <img id="image2" src="" alt="" width="600px" />
           <br><br>
           <img id="image3" src="" alt="" width="600px" />
+          -->
+          
+          <!--
+          <form>
+            <div class="form-group">
+              <label for="testOutput">Test Output:</label>
+              <textarea class="form-control" rows="40" style="overflow-y: scroll;" id="testOutput"></textarea>
+            </div>
+          </form>
+          -->
+          
+          <div id="testOutput"></div>
+          
         </div>
       </div>
     </div>
@@ -46,7 +60,8 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
       $.get('/keystone/api/session', '', function(data) {
         //debugger;
         
-        console.log('Test 1: /api/session PASSED');
+        appendOutput("Test $.get(/keystone/api/session) - PASSED")
+        //console.log('Test 1: /api/session PASSED');
         testCnt++;
         console.log('After $.get(/keystone/api/session), server returned...');
         console.log(data);
@@ -67,6 +82,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
         }
         
       }).fail( function() {
+        appendOutput("Test $.get(/keystone/api/session) - Server did not resond!")
         console.error('$.get(/keystone/api/session failed.)') ;
       });
       
@@ -146,7 +162,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
       $.post('/keystone/api/users/'+userItem.id, userItem, function(data) {
         //debugger;
         
-        console.log('Test '+testCnt+': post(/api/users/update) PASSED');
+        console.log('Test '+testCnt+': post(/api/users/userID) PASSED');
         console.log('Original user name was '+originalUserName+'. Name updated to: Test Name');
         console.log('');
         testCnt++;
@@ -155,31 +171,18 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
       }).fail(function( jqxhr, textStatus, error ) {
         //debugger;
         
-        console.log('Test '+testCnt+': post(/api/users/update) FAILED');
+        console.log('Test '+testCnt+': post(/api/users/userID) FAILED');
         console.log('Server returned: '+jqxhr.status+' ('+error+')');
         console.log('');
         testCnt++;
       });
-/*      
-       //Update the user name. TRY 2
-      $.post('/keystone/api/users/'+userItem.id+'/update', userItem, function(data) {
-        //debugger;
-        
-        console.log('Test '+testCnt+': post(/api/users/'+userItem.id+'/update) PASSED');
-        console.log('Original user name was '+originalUserName+'. Name updated to: Test Name');
-        console.log('');
-        testCnt++;
-        
-      //Catch failures
-      }).fail(function( jqxhr, textStatus, error ) {
-        //debugger;
-        
-        console.log('Test '+testCnt+': post(/api/users/'+userItem.id+'/update) FAILED');
-        console.log('Server returned: '+jqxhr.status+' ('+error+')');
-        console.log('');
-        testCnt++;
-      });
-*/      
+     
+    }
+    
+    
+    //This function is used to write the output of test results to the page.
+    function appendOutput(text, style) {
+      debugger;
     }
   </script>
   
