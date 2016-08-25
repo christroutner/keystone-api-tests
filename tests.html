@@ -183,6 +183,12 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
     //This function is used to write the output of test results to the page.
     function appendOutput(text, style) {
       debugger;
+      
+      if(style == undefined) {
+        $('#testOutput').append('<p>'+text+'</p>');
+      } else {
+        $('#testOutput').append('<p style="'+style+'">'+text+'</p>');
+      }
     }
   </script>
   
