@@ -146,6 +146,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
           if(data.indexOf('<title>Sign in to keystone</title>') != -1) {
             
             appendOutput('Test '+testCnt+': get(/keystone/api/users) FAILED', "color: red;");
+            appendOutput('Expected: user data');
             appendOutput('Server returned sign-in page.');
             appendOutput('');
           
