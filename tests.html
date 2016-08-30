@@ -217,6 +217,10 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
       } else {
         $('#testOutput').append('<p style="'+style+'">'+text+'</p>');
       }
+      
+      //Add a blank line if the input is blank.
+      if(text == '')
+        $('#testOutput').append('<br>');
     }
     /** END UTILITY FUNCTIONS **/
   </script>
