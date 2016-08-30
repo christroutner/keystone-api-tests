@@ -114,9 +114,10 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
           
           //Test to see if the response is a sign in
           if(data.indexOf('<title>Sign in to keystone</title>') != -1) {
-            appendOutput('Test '+testCnt+': /api/test FAILED', "color: red;");
+            appendOutput('Test '+testCnt+': /keystone/api/test FAILED', "color: red;");
             appendOutput('Expected: 500 (server error)');
             appendOutput('Server returned sign-in page.')
+            appendOutput('');
             testCnt++;
           }
         })
@@ -124,9 +125,9 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
           //debugger;
 
           if(jqxhr.status == 500)
-            appendOutput('Test '+testCnt+': /api/test PASSED', "color: green;");
+            appendOutput('Test '+testCnt+': /keystone/api/test PASSED', "color: green;");
           else
-            appendOutput('Test '+testCnt+': /api/test FAILED', "color: red;");
+            appendOutput('Test '+testCnt+': /keystone/api/test FAILED', "color: red;");
           testCnt++;
 
           appendOutput('Expected: 500 (server error)');
@@ -144,25 +145,27 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
           //Detect sign-in page
           if(data.indexOf('<title>Sign in to keystone</title>') != -1) {
             
-            appendOutput('Test '+testCnt+': get(/api/users) FAILED', "color: red;");
+            appendOutput('Test '+testCnt+': get(/keystone/api/users) FAILED', "color: red;");
             appendOutput('Server returned sign-in page.');
             appendOutput('');
           
           } else {
           
-            appendOutput('Test '+testCnt+': get(/api/users) PASSED', "color: green;");
+            appendOutput('Test '+testCnt+': get(/keystone/api/users) PASSED', "color: green;");
             appendOutput('First user found is '+data.results[0].name+' with ID '+data.results[0].id);
             appendOutput('');
+            
+            //This test can only run if this tests passes.
+            testListItemUpdate(data.results[0]);
           }
           
           testCnt++;
           
-          testListItemUpdate(data.results[0]);
         })
         .fail(function( jqxhr, textStatus, error ) {
           //debugger
           
-          appendOutput('Test '+testCnt+': get(/api/users) FAILED', "color: red;");
+          appendOutput('Test '+testCnt+': get(/keystone/api/users) FAILED', "color: red;");
           appendOutput('Server returned: '+jqxhr.status+'('+error+')');
           appendOutput('');
           
