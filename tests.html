@@ -71,6 +71,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
         if(isLoggedIn) {
           appendOutput('You are logged into KeystoneJS.');
           appendOutput('');
+          
           console.log('You are logged into KeystoneJS.');
           console.log('');
           
@@ -81,6 +82,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
           appendOutput('You are NOT logged in.');
           appendOutput("Server returned an empty object. This is expected, but out of spec. <a href='https://github.com/keystonejs/keystone/issues/3421'>See this GitHub issue.</a>", "color: yellow;");
           appendOutput('');
+          
           console.log('You are NOT logged in.');
           console.log('');
           
@@ -108,6 +110,8 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
         $.get('/keystone/api/test', '', function(data) {
           //debugger
           
+          //Note: this part shouldn't even run since api/test does not exist. This is a negative test.
+          
           //Test to see if the response is a sign in
           if(data.indexOf('<title>Sign in to keystone</title>') != -1) {
             appendOutput('Test '+testCnt+': /api/test FAILED', "color: red;");
@@ -129,7 +133,6 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
           appendOutput('Server returned: '+jqxhr.status+' ('+error+')');
           appendOutput('');
 
-          console.log('');
 
         });
 
@@ -138,27 +141,29 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
         $.get('/keystone/api/users', '', function(data) {
           //debugger
           
-          console.log('Test '+testCnt+': get(/api/users) PASSED');
-          console.log('First user found is '+data.results[0].name+' with ID '+data.results[0].id);
-          console.log('');
+          //Detect sign-in page
+          if(data.indexOf('<title>Sign in to keystone</title>') != -1) {
+            
+            appendOutput('Test '+testCnt+': get(/api/users) FAILED', "color: red;");
+            appendOutput('Server returned: '+jqxhr.status+'('+error+')');
+            appendOutput('');
           
-          appendOutput('Test '+testCnt+': get(/api/users) PASSED', "color: green;");
-          appendOutput('First user found is '+data.results[0].name+' with ID '+data.results[0].id);
-          appendOutput('');
+          } else {
+          
+            appendOutput('Test '+testCnt+': get(/api/users) PASSED', "color: green;");
+            appendOutput('First user found is '+data.results[0].name+' with ID '+data.results[0].id);
+            appendOutput('');
+          }
           
           testCnt++;
           
           testListItemUpdate(data.results[0]);
         })
         .fail(function( jqxhr, textStatus, error ) {
-          //debugger;
-          
-          console.log('Test '+testCnt+': get(/api/users) FAILED');
-          console.log('Server returned: '+jqxhr.status+'('+error+')');
-          console.log('');
+          //debugger
           
           appendOutput('Test '+testCnt+': get(/api/users) FAILED', "color: red;");
-          appendOutput('Server returned: '+jqxhr.status+'('+error+')');
+          appendOutput('Server returned sign-in page.');
           appendOutput('');
           
           testCnt++;
