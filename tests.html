@@ -145,7 +145,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
           if(data.indexOf('<title>Sign in to keystone</title>') != -1) {
             
             appendOutput('Test '+testCnt+': get(/api/users) FAILED', "color: red;");
-            appendOutput('Server returned: '+jqxhr.status+'('+error+')');
+            appendOutput('Server returned sign-in page.');
             appendOutput('');
           
           } else {
@@ -163,7 +163,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
           //debugger
           
           appendOutput('Test '+testCnt+': get(/api/users) FAILED', "color: red;");
-          appendOutput('Server returned sign-in page.');
+          appendOutput('Server returned: '+jqxhr.status+'('+error+')');
           appendOutput('');
           
           testCnt++;
