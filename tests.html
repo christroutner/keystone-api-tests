@@ -198,8 +198,8 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
         console.log('');
         
         appendOutput('Test '+testCnt+': post(/api/users/userID) FAILED', "color: red;");
+        appendOutput('Probably due to KeystoneJS GitHub Issue <a href="https://github.com/keystonejs/keystone/issues/3420" target="_blank">#3420</a>');
         appendOutput('Server returned: '+jqxhr.status+' ('+error+')');
-        appendOutput('See KeystoneJS GitHub Issue <a href="https://github.com/keystonejs/keystone/issues/3420" target="_blank">#3420</a>');
         appendOutput('');
         
         testCnt++;
