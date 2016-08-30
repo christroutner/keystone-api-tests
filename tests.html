@@ -128,11 +128,11 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
         $.get('/keystone/api/users', '', function(data) {
           //debugger
           
-          console.log('Test '+testCnt+': get(/api/users) PASSED', "color: green;");
+          console.log('Test '+testCnt+': get(/api/users) PASSED');
           console.log('First user found is '+data.results[0].name+' with ID '+data.results[0].id);
           console.log('');
           
-          appendOutput('Test '+testCnt+': get(/api/users) PASSED');
+          appendOutput('Test '+testCnt+': get(/api/users) PASSED', "color: green;");
           appendOutput('First user found is '+data.results[0].name+' with ID '+data.results[0].id);
           appendOutput('');
           
@@ -143,9 +143,14 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
         .fail(function( jqxhr, textStatus, error ) {
           //debugger;
           
-          console.log('Test '+testCnt+': get(/api/users) FAILED', "color: red;");
+          console.log('Test '+testCnt+': get(/api/users) FAILED');
           console.log('Server returned: '+jqxhr.status+'('+error+')');
           console.log('');
+          
+          appendOutput('Test '+testCnt+': get(/api/users) FAILED', "color: red;");
+          appendOutput('Server returned: '+jqxhr.status+'('+error+')');
+          appendOutput('');
+          
           testCnt++;
         });
         
