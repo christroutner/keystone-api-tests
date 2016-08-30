@@ -118,7 +118,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
             appendOutput('Test '+testCnt+': /keystone/api/test FAILED', "color: orange;");
             appendOutput('Expected: 500 (server error)');
             appendOutput('Server returned sign-in page.');
-            appendOutput("<a href='https://github.com/keystonejs/keystone/issues/3439#issuecomment-243388584'>See this GitHub issue.</a>");
+            appendOutput("<a href='https://github.com/keystonejs/keystone/issues/3439#issuecomment-243388584' target='_blank'>See this GitHub issue.</a>");
             appendOutput('');
             testCnt++;
           }
@@ -147,10 +147,10 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
           //Detect sign-in page
           if(data.indexOf('<title>Sign in to keystone</title>') != -1) {
             
-            appendOutput('Test '+testCnt+': get(/keystone/api/users) FAILED', "color: orage;");
+            appendOutput('Test '+testCnt+': get(/keystone/api/users) FAILED', "color: orange;");
             appendOutput('Expected: user data');
             appendOutput('Server returned sign-in page.');
-            appendOutput("<a href='https://github.com/keystonejs/keystone/issues/3438#issuecomment-243388783'>See this GitHub issue.</a>");
+            appendOutput("<a href='https://github.com/keystonejs/keystone/issues/3438#issuecomment-243388783' target='_blank'>See this GitHub issue.</a>");
             appendOutput('');
           
           } else {
