@@ -78,6 +78,8 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
           //For now, I'm just going to write tests if the user is logged in. Most API calls return a sign-in page if the user is not logged in.
           //This call intentially creates an error
           runLoggedInTests();
+          
+        //User is NOT logged in.  
         } else {
           appendOutput('You are NOT logged in.');
           appendOutput('Expected: Empty Object');
@@ -90,6 +92,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
           //Dev Note: This would be a good place to run Negative tests. E.g. test the expected output of API calls when user is not logged in.
         }
         
+      //Failed to communicate with server.
       }).fail( function() {
         appendOutput("Test $.get(/keystone/api/session) - Server did not resond!", "color: red;")
         console.error('$.get(/keystone/api/session failed.)') ;
@@ -123,6 +126,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
             testCnt++;
           }
         })
+        //Failed to communicate with server.
         .fail(function( jqxhr, textStatus, error ) {
           //debugger;
 
@@ -171,6 +175,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
           testCnt++;
           
         })
+        //Failed to communicate with server.
         .fail(function( jqxhr, textStatus, error ) {
           //debugger
           
