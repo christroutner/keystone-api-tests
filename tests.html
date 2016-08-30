@@ -60,7 +60,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
       $.get('/keystone/api/session', '', function(data) {
         //debugger;
         
-        appendOutput("Test $.get(/keystone/api/session) - PASSED", "color: green;")
+        appendOutput("Test "+testCnt+": $.get(/keystone/api/session) - PASSED", "color: green;")
         testCnt++;
         console.log('After $.get(/keystone/api/session), server returned...');
         console.log(data);
@@ -70,6 +70,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
         
         if(isLoggedIn) {
           appendOutput('You are logged into KeystoneJS.');
+          appendOutput('');
           console.log('You are logged into KeystoneJS.');
           console.log('');
           
@@ -116,6 +117,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
             
             appendOutput('Expected: 500 (server error)');
             appendOutput('Server returned: '+jqxhr.status+' ('+error+')');
+            appendOutput('');
             
             console.log('');
           
@@ -129,6 +131,11 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
           console.log('Test '+testCnt+': get(/api/users) PASSED');
           console.log('First user found is '+data.results[0].name+' with ID '+data.results[0].id);
           console.log('');
+          
+          appendOutput('Test '+testCnt+': get(/api/users) PASSED');
+          appendOutput('First user found is '+data.results[0].name+' with ID '+data.results[0].id);
+          appendOutput('');
+          
           testCnt++;
           
           testListItemUpdate(data.results[0]);
@@ -170,6 +177,11 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
         console.log('Test '+testCnt+': post(/api/users/userID) PASSED');
         console.log('Original user name was '+originalUserName+'. Name updated to: Test Name');
         console.log('');
+        
+        appendOutput('Test '+testCnt+': post(/api/users/userID) PASSED', "color: green;");
+        appendOutput('Original user name was '+originalUserName+'. Name updated to: Test Name');
+        appendOutput('');
+        
         testCnt++;
         
       //Catch failures
@@ -179,12 +191,17 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
         console.log('Test '+testCnt+': post(/api/users/userID) FAILED');
         console.log('Server returned: '+jqxhr.status+' ('+error+')');
         console.log('');
+        
+        appendOutput('Test '+testCnt+': post(/api/users/userID) FAILED', "color: red;");
+        appendOutput('Server returned: '+jqxhr.status+' ('+error+')');
+        appendOutput('');
+        
         testCnt++;
       });
      
     }
     
-    
+    /** START UTILITY FUNCTIONS **/
     //This function is used to write the output of test results to the page.
     function appendOutput(text, style) {
       debugger;
@@ -195,6 +212,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
         $('#testOutput').append('<p style="'+style+'">'+text+'</p>');
       }
     }
+    /** END UTILITY FUNCTIONS **/
   </script>
   
 </body>
