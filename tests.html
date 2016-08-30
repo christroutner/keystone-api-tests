@@ -128,7 +128,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
         $.get('/keystone/api/users', '', function(data) {
           //debugger
           
-          console.log('Test '+testCnt+': get(/api/users) PASSED');
+          console.log('Test '+testCnt+': get(/api/users) PASSED', "color: green;");
           console.log('First user found is '+data.results[0].name+' with ID '+data.results[0].id);
           console.log('');
           
@@ -143,7 +143,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
         .fail(function( jqxhr, textStatus, error ) {
           //debugger;
           
-          console.log('Test '+testCnt+': get(/api/users) FAILED');
+          console.log('Test '+testCnt+': get(/api/users) FAILED', "color: red;");
           console.log('Server returned: '+jqxhr.status+'('+error+')');
           console.log('');
           testCnt++;
@@ -204,7 +204,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
     /** START UTILITY FUNCTIONS **/
     //This function is used to write the output of test results to the page.
     function appendOutput(text, style) {
-      debugger;
+      //debugger;
       
       if(style == undefined) {
         $('#testOutput').append('<p>'+text+'</p>');
