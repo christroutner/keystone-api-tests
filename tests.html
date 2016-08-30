@@ -56,7 +56,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
     //First function that is called when the document finishes loading.
     $(document).ready( function() {
     
-      //Get user session information. Determine if user is logged in or not.
+      //TEST: Query login status.
       $.get('/keystone/api/session', '', function(data) {
         //debugger;
         
@@ -104,27 +104,37 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
       if(isLoggedIn) {
         //debugger;
         
-        //Get a list that doesn't exist.
-        $.get('/keystone/api/test', '', function(data) {debugger})
-          .fail(function( jqxhr, textStatus, error ) {
-            //debugger;
-            
-            if(jqxhr.status == 500)
-              appendOutput('Test '+testCnt+': /api/test PASSED', "color: green;");
-            else
-              appendOutput('Test '+testCnt+': /api/test FAILED', "color: red;");
-            testCnt++;
-            
-            appendOutput('Expected: 500 (server error)');
-            appendOutput('Server returned: '+jqxhr.status+' ('+error+')');
-            appendOutput('');
-            
-            console.log('');
+        //TEST: Get a list that doesn't exist.
+        $.get('/keystone/api/test', '', function(data) {
+          //debugger
           
-          });
+          //Test to see if the response is a sign in
+          if(data.indexOf('<title>Sign in to keystone</title>') != -1) {
+            appendOutput('Test '+testCnt+': /api/test FAILED', "color: red;");
+            appendOutput('Expected: 500 (server error)');
+            appendOutput('Server returned sign-in page.')
+            testCnt++;
+          }
+        })
+        .fail(function( jqxhr, textStatus, error ) {
+          //debugger;
+
+          if(jqxhr.status == 500)
+            appendOutput('Test '+testCnt+': /api/test PASSED', "color: green;");
+          else
+            appendOutput('Test '+testCnt+': /api/test FAILED', "color: red;");
+          testCnt++;
+
+          appendOutput('Expected: 500 (server error)');
+          appendOutput('Server returned: '+jqxhr.status+' ('+error+')');
+          appendOutput('');
+
+          console.log('');
+
+        });
 
 
-        //Get /api/users
+        //TEST: Get /api/users
         $.get('/keystone/api/users', '', function(data) {
           //debugger
           
