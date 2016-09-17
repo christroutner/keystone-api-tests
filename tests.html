@@ -164,12 +164,13 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
           //data object has values we expect, so test passed.
           } else {
           
+            var user_index = 1; //This value used to test against different user accounts. 0 = user@keystonejs.com
             appendOutput('Test '+testCnt+': get(/keystone/api/users) PASSED', "color: green;");
-            appendOutput('First user found is '+data.results[0].name+' with ID '+data.results[0].id);
+            appendOutput('First user found is '+data.results[user_index].name+' with ID '+data.results[user_index].id);
             appendOutput('');
             
             //This test can only run if the current test passes.
-            testListItemUpdate(data.results[0]);
+            testListItemUpdate(data.results[user_index]);
           }
           
           testCnt++;
