@@ -209,7 +209,8 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
       //NOTE: Not sure what the right 'update' path is, so trying multiple.
       
       //Update the user name. TRY 1
-      $.post('/keystone/api/users/'+userItem.id, userItem.fields, function(data) {
+      $.post('/keystone/api/users/'+userItem.id, userItem, function(data) {
+      //$.post('/keystone/api/users/'+userItem.id, userItem.fields, function(data) {
         //debugger;
         
         console.log('Test '+testCnt+': post(/api/users/userID) PASSED');
