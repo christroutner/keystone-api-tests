@@ -219,7 +219,14 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
         
         appendOutput('Test '+testCnt+': post(/api/users/userID) PASSED', "color: green;");
         appendOutput('Original user name was '+originalUserName+'. Name updated to: Test Name');
+        appendOutput('Switching back to '+originalUserName+'...');
+        
+        //Switch user name back.
+        userItem.name = originalUserName;
+        $.post('/keystone/api/users/'+userItem.id, userItem, function(data) {});
+        
         appendOutput('');
+        
         
         testCnt++;
         
