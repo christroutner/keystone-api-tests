@@ -223,7 +223,9 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
         
         //Switch user name back.
         userItem.name = originalUserName;
-        $.post('/keystone/api/users/'+userItem.id, userItem, function(data) {});
+        $.post('/keystone/api/users/'+userItem.id, userItem, function(data) {
+          appendOutput('...Done!');
+        });
         
         appendOutput('');
         
