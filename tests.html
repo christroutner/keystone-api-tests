@@ -46,8 +46,8 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
 
   <script type="text/javascript">
     //Global Variables
-    var serverIP = '<your ip address>';
-    var serverIP = '192.241.198.211';
+    //var serverIP = '<your ip address>';
+    //var serverIP = '192.241.198.211';
     
     var isLoggedIn = false;
     
@@ -117,13 +117,15 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
           //Note: this part shouldn't even run since api/test does not exist. This is a negative test.
           
           //Test to see if the response is a sign in
-          if(data.indexOf('<title>Sign in to keystone</title>') != -1) {
+          if(data.indexOf('<title>Sign in to') != -1) {
             appendOutput('Test '+testCnt+': /keystone/api/test FAILED', "color: orange;");
             appendOutput('Expected: 500 (server error)');
             appendOutput('Server returned sign-in page.');
             appendOutput("<a href='https://github.com/keystonejs/keystone/issues/3439#issuecomment-243388584' target='_blank'>See this GitHub issue.</a>");
             appendOutput('');
             testCnt++;
+          } else {
+            debugger;
           }
         })
         //Failed to communicate with server.
