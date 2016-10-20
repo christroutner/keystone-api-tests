@@ -126,6 +126,7 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
             testCnt++;
           } else {
             debugger;
+            appendOutput('Test '+testCnt+': /keystone/api/test returned unexpected result.', "color: red;");
           }
         })
         //Failed to communicate with server.
@@ -154,13 +155,16 @@ Note: You'll need the bootstrap css and js files and change the paths to them be
           if(data.results == undefined) {
             
             //Detect sign-in page
-            if(data.indexOf('<title>Sign in to keystone</title>') != -1) {
+            if(data.indexOf('<title>Sign in to') != -1) {
 
               appendOutput('Test '+testCnt+': get(/keystone/api/users) FAILED', "color: orange;");
               appendOutput('Expected: user data');
               appendOutput('Server returned sign-in page.');
               appendOutput("<a href='https://github.com/keystonejs/keystone/issues/3438#issuecomment-243388783' target='_blank'>See this GitHub issue.</a>");
               appendOutput('');
+            } else {
+              debugger;
+              appendOutput('Test '+testCnt+': /keystone/api/test returned unexpected result.', "color: red;");
             }
           
           //data object has values we expect, so test passed.
